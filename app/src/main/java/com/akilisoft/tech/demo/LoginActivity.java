@@ -51,6 +51,7 @@ public class LoginActivity extends Activity {
                     startActivity(new Intent(getBaseContext(), MainActivity.class));
                 }else{
                     Toast.makeText(getApplicationContext(), "Indentifiants invalides",Toast.LENGTH_SHORT).show();
+                    //insertUser("test","test","78232322","M","test","test",  "test","test","burkina");
 
                     tx1.setVisibility(View.VISIBLE);
                     tx1.setBackgroundColor(Color.RED);
@@ -96,4 +97,27 @@ public class LoginActivity extends Activity {
         }
 
     }
+
+    public void insertUser(String nom,String prenom,String phone,String sexe,String email,String password, String role,String country,String city)
+    {
+
+        if(!(email.isEmpty()  || password.isEmpty() || role.isEmpty())){
+
+            try {
+
+                tableSQLiteController.userCreate(nom,prenom,phone,sexe,email,password,role,country,city,"");
+                Toast.makeText(getApplicationContext(), "user created",Toast.LENGTH_SHORT).show();
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }else {
+            Toast.makeText(getApplicationContext(), "user not created",Toast.LENGTH_SHORT).show();
+            //requireMessage();
+        }
+
+
+    }
+
 }
